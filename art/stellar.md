@@ -1,0 +1,1 @@
+The artwork for Stellar by Lost Cause on Cyduck. The artwork was created by generating a mandelbulb with random parameters in Mandelbulber, a 3D fractal program. There are also a few normal mandelbulbs used.

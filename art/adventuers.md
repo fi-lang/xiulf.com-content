@@ -1,0 +1,1 @@
+The artwork for Adventures by Hellfire on Cyduck.

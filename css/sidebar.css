@@ -1,0 +1,89 @@
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 60px;
+    transition: width 0.3s, background-color 0.3s;
+
+    display: grid;
+    grid-template-rows: 60px auto minmax(0px, 60px);
+}
+
+#sidebar:hover {
+    transition: width 0.5s 1s, background-color 0.5s 1s;
+    width: 160px;
+    background-color: #e0e0e0;
+}
+
+#sidebar:hover ul li a {
+    transition: max-width 0.5s 1s;
+    max-width: 140px;
+}
+
+#sidebar .logo {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+
+#sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-rows: repeat(4, 64px);
+    align-content: center;
+}
+
+#sidebar ul li {
+    margin: 10px;
+}
+
+#sidebar ul li a {
+    display: block;
+    color: #111111;
+    opacity: 0.6;
+    border-radius: 5px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    max-width: 40px;
+    transition: max-width 0.3s;
+}
+
+#sidebar ul li a > * {
+    vertical-align: middle;
+}
+
+#sidebar ul li a svg {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+#sidebar ul li a:hover {
+    opacity: 1;
+}
+
+#sidebar ul li.current a {
+    opacity: 1;
+    color: #eeeeee;
+}
+
+#sidebar ul li.current a {
+    background: #8153E2;
+}
+
+@media (prefers-color-scheme: dark) {
+    #sidebar:hover {
+        background-color: #0a0a0a;
+    }
+
+    #sidebar ul li a {
+        color: #eeeeee;
+    }
+}

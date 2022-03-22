@@ -1,3 +1,8 @@
+---
+Title: Improving Shade's Diagnostics
+Created: 19-03-2022
+---
+
 ## Intro
 For anyone who doesn't yet know, Shade is a programming language compiler I've been working on. The language's features are all heavily inspired by different functional programming languages (Haskell, [Purescript][ps], ante) as well as the Rust programming language and Vale. This project is still very much in progress. In this post I will the describe how I've changed the typechecker to allow for better error messages (diagnostics).
 

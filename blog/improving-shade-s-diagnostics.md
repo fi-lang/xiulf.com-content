@@ -5,9 +5,10 @@ Created: 19-03-2022
 
 ## Intro
 For anyone who doesn't yet know, [Shade][shade] is a programming language compiler I've been working on. The language's
-features are all heavily inspired by different functional programming languages ([Haskell][hs], [Purescript][ps], [ante][ante]) as
-well as the [Rust][rs] programming language and [Vale][vale]. This project is still very much in progress. In this post I will the
-describe how I've changed the typechecker to allow for better error messages (diagnostics).
+features are all heavily inspired by different functional programming languages ([Haskell][hs], [Purescript][ps],
+[ante][ante]) as well as the [Rust][rs] programming language and [Vale][vale]. This project is still very much in
+progress. In this post I will the describe how I've changed the typechecker to allow for better error messages
+(diagnostics).
 
 ## How does the typechecker work?
 Just like a lot of other modern programming languages Shade uses an adaptation of the [Hindley-Milner][hm] algorithm.

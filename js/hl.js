@@ -64,13 +64,14 @@ class Parser {
 
     start(tag) {
         let node = document.createElement('span');
+        let parent = this.node;
 
         node.className = tag;
 
         this.flush();
         this.node = node;
 
-        return new Marker(this);
+        return new Marker(parent, this.pos);
     }
 
     flush() {
@@ -117,9 +118,9 @@ class Parser {
 }
 
 class Marker {
-    constructor(parser) {
-        this.parent = parser.node;
-        this.start = parser.pos;
+    constructor(parent, start) {
+        this.parent = parent;
+        this.start = start;
     }
 
     complete(parser) {

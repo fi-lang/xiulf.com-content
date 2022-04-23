@@ -19,5 +19,23 @@ values in registes can be used directly. When generating assembly it is very imp
 account. It is also very important that the datatypes of all values in a program are known before generating assembly,
 because the assembly instructions differ for different datatypes.
 
+## Generics
+Because all types need to be known before generating the assembly, many programming languages require the user to enter
+the types of variables, function parameters, etc. But what if you want a certain function to work for multiple differnt
+types? Each of those different datatypes might be a differnt number of bits, or use different assembly instruction to
+work with them. However, the assembly genrated for a function is always the same. The way modern programming languages
+solve this problem is by parameterizing the entire function definition by "type parameters". This feature is also known
+as "generics", as it generalizes the function definition. Turning these generic function into assembly can be done in
+two ways, the first being monomorphization. With monomorphization a polymorphic (generic) function is turned into a
+monomorphic (non-generic) function for every datatypes it is used with. So if a generic function is used with two
+datatypes, one of 16 bits and one of 64 bits, then two copies of that function will be generated, one which works only
+for the 16 bit datatypes and one that works only for the 64 bit datatype. This method has the advantage of being very
+simple to implement and each of the copied functions can also be optimized individually. The downside is that now the
+assembly for a function has to be generated multiple times, which will take more time and also increase the size of the
+final binary file. It is also harder for other libraries to make use of these functions since they would have to
+generate even more copies for any of their own custom datatypes.
+
+## The solution
+
 
 [lowlang]: /projects#lowlang

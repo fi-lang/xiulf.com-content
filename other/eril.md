@@ -36,6 +36,33 @@ final binary file. It is also harder for other libraries to make use of these fu
 generate even more copies for any of their own custom datatypes.
 
 ## The solution
+The only other way to have the same code work with multiple datatypes is to only access values of those types indirectly
+through pointers or references. This usually means that before passing a value to a generic function it is first placed
+on the stack, and the memory address of that values is then passed to the function. This works because pointer values
+always use the smae number of bits and use the same assembly instructions. But this only solves half of the problem. Now
+the function can receive values of any type, but it can't do anything with them. The way this can be solved is by also
+passing in functions that perform operations on the datatypes indirectly. An example: say our generic function wants to
+add two values of generic type T. Then two pointers to a value T will have to be pased to the function and a pointer to
+a location in memory where the result can be stored, as well as a pointer to a function that can add two values of type
+T. In the C programming language that would look something like this:
+
+```c
+// generic function
+void add(T* ret, T* a, T* b, void *add_T(T*, T*, T*)) {
+    add_T(ret, a, b);
+}
+
+int add_int(int a, int b) 
+    return a + b;
+}
+
+// usage
+int a = 3;
+int b = 5;
+int ret;
+
+add(&ret, &a, &b, add_int);
+```
 
 
 [lowlang]: /projects#lowlang

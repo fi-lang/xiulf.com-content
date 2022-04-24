@@ -34,4 +34,5 @@ know it's alignment.
 Normally the layout of a datatype is determined at compile time (before any of the assembly is generated). But as
 explained before, that is not always possible because of opaque layouts. The final layout of an opaque layout can only
 be computed at runtime (when the code is run). To do this an opaque layout could be turned into some sort of template,
-which the layouts of the generic parameters as inputs.
+which the layouts of the generic parameters as inputs. These templates are simply functions that compute the layout for
+that specific type.

@@ -29,3 +29,9 @@ An opaque layout would look something like this: `<T> { a: Int32, b: T }`, which
 type `Int32` and `b` of (generic) type `T`. In this case the size, alignment and stride are all unknown. However, the
 offset for field `a` is known because it will always be 0. The offset for field `b` is still unknown because we don't
 know it's alignment.
+
+## Runtime layout
+Normally the layout of a datatype is determined at compile time (before any of the assembly is generated). But as
+explained before, that is not always possible because of opaque layouts. The final layout of an opaque layout can only
+be computed at runtime (when the code is run). To do this an opaque layout could be turned into some sort of template,
+which the layouts of the generic parameters as inputs.

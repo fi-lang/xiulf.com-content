@@ -5,9 +5,9 @@ Title: ERIL
 # ERIL
 
 ## Intro
-ERIL is a new programming language project I'm starting. The goal is to rewrite [lowlang][lowlang] so that it is easier
-to add new features and to understand how it works. To understand why I'm creating this, let's first take a look at how
-memory and datatypes work in programming.
+ERIL is a new programming language project I'm starting. The goal is to rewrite [lowlang](/projects#lowlang) so that it
+is easier to add new features and to understand how it works. To understand why I'm creating this, let's first take a
+look at how memory and datatypes work in programming.
 
 ## Memory
 A computer makes use of bits to store data, these can be either 0 or 1. A group of 8 bits is known as a byte. A CPU has
@@ -64,5 +64,6 @@ int ret;
 add(&ret, &a, &b, add_int);
 ```
 
+#### Continue reading
 
-[lowlang]: /projects#lowlang
+1. [Memory Layout](/eril/memory-layout)

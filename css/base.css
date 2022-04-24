@@ -228,18 +228,18 @@ section ul {
 }
 
 section ul li {
-    padding-left: 31px;
-    margin-bottom: 12px;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
     position: relative;
 }
 
 section ul li::before {
     content: "";
     position: absolute;
-    left: 11px;
-    top: 13px;
-    width: 8px;
-    height: 8px;
+    left: 0.75rem;
+    top: 0.75rem;
+    width: 0.5rem;
+    height: 0.5rem;
     background-color: rgba(129, 83, 226, 0.4);
     border-radius: 100%;
 }

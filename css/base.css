@@ -192,8 +192,11 @@ p a {
     border-bottom-color: #d9d9d9;
 }
 
-p a:hover {
+a:hover {
     color: #8153E2;
+}
+
+p a:hover {
     border-bottom-color: rgba(129, 83, 226, 0.4);
 }
 
@@ -216,6 +219,29 @@ hr {
     border-color: #D9D9D9;
     margin: 50px 0;
     grid-column: main;
+}
+
+section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+section ul li {
+    padding-left: 31px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+section ul li::before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(129, 83, 226, 0.4);
+    border-radius: 100%;
 }
 
 article {

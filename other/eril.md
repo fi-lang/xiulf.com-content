@@ -66,4 +66,4 @@ add(&ret, &a, &b, add_int);
 
 #### Continue reading
 
-1. [Memory Layout](/eril/memory-layout)
+* [Memory Layout](/eril/memory-layout)

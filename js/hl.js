@@ -1,5 +1,8 @@
 const LANGS = {
     'text': plain_text,
+    'c': c,
+    'cpp': c,
+    'c++': c,
 };
 
 window.addEventListener('load', () => {
@@ -47,6 +50,27 @@ function plain_text() {
             } else if ((match = p.matches(/[<>/?@#$:|!~%^&*+=-]+/)) !== null) {
                 let n = p.start('operator');
                 p.advance(match[0].length);
+                n.complete(p);
+            } else {
+                p.advance();
+            }
+        }
+    };
+}
+
+function c() {
+    return function(p) {
+        while (!p.eof()) {
+            p.whitespace();
+
+            if (p.startsWith("//")) {
+                let n = p.start('comment');
+                p.advance(2);
+
+                while (!p.eof() && !p.startsWith('\n')) {
+                    p.advance(1);
+                }
+
                 n.complete(p);
             } else {
                 p.advance();

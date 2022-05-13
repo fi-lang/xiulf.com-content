@@ -4,13 +4,15 @@ const LANGS = {
 
 window.addEventListener('load', () => {
     for (let code of document.getElementsByTagName('code')) {
-        if (code.className.length == 0) {
-            highlight(code, plain_text());
-        } else if (LANGS.hasOwnProperty(code.className.substring(9))) {
-            let lang = LANGS[code.className.substring(9)];
-            highlight(code, lang());
-        } else {
-            highlight(code, plain_text());
+        if (code.parentElement.tagName === "PRE") {
+            if (code.className.length == 0) {
+                highlight(code, plain_text());
+            } else if (LANGS.hasOwnProperty(code.className.substring(9))) {
+                let lang = LANGS[code.className.substring(9)];
+                highlight(code, lang());
+            } else {
+                highlight(code, plain_text());
+            }
         }
     }
 });

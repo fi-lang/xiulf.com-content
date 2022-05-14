@@ -79,6 +79,66 @@ function c() {
     };
 }
 
+function surrounded(left, right, middle) {
+    return function(p) {
+        return left(p) && middle(p) && right(p);
+    };
+}
+
+function sep(fn, s = token(',', 'delimiter')) {
+    return function(p) {
+        let all = fn(p);
+
+        while (!p.eof() && s(p)) {
+            all &= fn(p);
+        }
+
+        return all;
+    };
+}
+
+function seq(...fns) {
+    return function(p) {
+        let all = true;
+
+        for (let fn of fns) {
+            all &= fn(p);
+        }
+
+        return all;
+    };
+}
+
+function token(pat, tok) {
+    return function(p) {
+        p.whitespace();
+
+        let t = p.start(tok);
+
+        if (typeof (pat) === "string") {
+            if (p.startsWith(pat)) {
+                p.advance(pat.length);
+                t.complete(p);
+                return true;
+            } else {
+                t.abandon(p);
+                return false;
+            }
+        } else {
+            let match = p.matches(pat);
+
+            if (match !== null) {
+                p.advance(match[0].length);
+                t.complete(p);
+                return true;
+            } else {
+                t.abandon(p);
+                return false;
+            }
+        }
+    };
+}
+
 class Parser {
     constructor(output, input) {
         this.output = output;

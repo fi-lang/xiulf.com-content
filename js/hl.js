@@ -45,6 +45,9 @@ function constraints() {
 function c() {
     const l = new Language();
 
+    l.region('comment', /\/\//, /(?=\n|$)/);
+    l.region('comment', /\/\*/, /\*\//);
+
     return l.finish();
 }
 

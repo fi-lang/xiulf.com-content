@@ -30,7 +30,7 @@ code .keyword {
     color: #d183e8;
 }
 
-code .keyword.storage {
+code .keyword.modifier {
     color: #f09479;
 }
 

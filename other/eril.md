@@ -52,7 +52,7 @@ void add(T* ret, T* a, T* b, void *add_T(T*, T*, T*)) {
     add_T(ret, a, b);
 }
 
-int add_int(int a, int b) 
+int add_int(int a, int b) {
     return a + b;
 }
 

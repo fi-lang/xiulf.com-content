@@ -73,4 +73,12 @@ window.addEventListener('load', () => {
         document.body.addEventListener('scroll', on_scroll);
         window.addEventListener('hashchange', on_hash_change);
     }
+
+    if (location.hash != '') {
+        const el = document.getElementById(location.hash.substring(1));
+
+        if (el != null) {
+            el.scrollIntoView();
+        }
+    }
 });

@@ -48,6 +48,25 @@ function c() {
     l.region('comment', /\/\//, /(?=\n|$)/);
     l.region('comment', /\/\*/, /\*\//);
 
+    // keywords
+    l.keyword('keyword modifier', "signed", "unsigned", "static", "const");
+    l.keyword('keyword control', "return", "break", "continue", "if", "else", "switch");
+    l.keyword('keyword repeat', "while", "for");
+    l.keyword('keyword', "case");
+
+    // identifiers
+    l.match('type', /[a-zA-W_][a-zA-Z0-9_]*(?=\s*[a-zA-Z_*])/);
+    l.match('function', /[a-zA-W_][a-zA-Z0-9_]*(?=\s*\()/);
+    l.match('identifier', /[a-zA-W_][a-zA-Z0-9_]*/);
+
+    // constants
+    l.match('number', /\d+(\.\d+)?/);
+    l.region('string', /"/, /"/).skip(/\\"/);
+    l.keyword('boolean', "true", "false");
+    l.keyword('constant', "NULL");
+
+    l.match('operator', /[<>\/?*&^%!~|=+-]+/);
+
     return l.finish();
 }
 
@@ -134,7 +153,6 @@ class Rule {
         this.inner = [];
         this._next = null;
         this._skipWhite = false;
-        this._skipEmpty = false;
     }
 
     contained() {
@@ -155,11 +173,6 @@ class Rule {
 
     skipWhite() {
         this._skipWhite = true;
-        return this;
-    }
-
-    skipEmpty() {
-        this._skipEmpty = true;
         return this;
     }
 
@@ -242,9 +255,40 @@ function highlight(input, language) {
 }
 
 function parse(el, language, rules, text, pos, end) {
+    let next = null;
+    let nextSkipWhite = false;
+
     while (pos < end) {
+        let checkNext = false;
         let match = null;
         let rule;
+
+        if (next !== null && next !== undefined) {
+            if (nextSkipWhite) {
+                let start = pos;
+                while (/\s/.test(text[pos])) pos++;
+
+                if (pos > start) {
+                    let t = document.createTextNode(text.slice(start, pos));
+
+                    el.appendChild(t);
+                }
+            }
+
+            for (const r of next) {
+                let m = r.match(text, pos, end);
+                if (m == null) continue;
+                if (m.span[0] != pos) continue;
+
+                if (match == null || m.span[0] < match.span[0] || m.span[0] == match.span[0] && m.span[1] > match.span[1]) {
+                    match = m;
+                    rule = r;
+                }
+            }
+
+            checkNext = true;
+            next = null;
+        }
 
         for (const r of rules) {
             let m = r.match(text, pos, end);
@@ -257,6 +301,11 @@ function parse(el, language, rules, text, pos, end) {
         }
 
         if (match == null) {
+            if (checkNext) {
+                checkNext = false;
+                continue;
+            }
+
             if (pos < end) {
                 let t = document.createTextNode(text.slice(pos, end));
                 el.appendChild(t);
@@ -286,9 +335,11 @@ function parse(el, language, rules, text, pos, end) {
                 n.appendChild(t);
             }
 
-            n.classList.add(rule.name);
+            n.className = rule.name;
             el.appendChild(n);
             pos = match.span[1];
+            next = rule._next;
+            nextSkipWhite = rule._skipWhite;
         }
     }
 }

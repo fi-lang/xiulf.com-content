@@ -1,27 +1,47 @@
 code .comment {
-    color: hsl(211.6, 8.9%, 58.2%);
+    color: #949494;
 }
 
 code .number {
-    color: hsl(208.2, 100%, 73.7%);
+    color: #de935f;
 }
 
 code .string {
-    color: hsl(207.3, 100%, 82.4%);
+    color: #c2c292;
+}
+
+code .char {
+    color: #ae81ff;
+}
+
+code .boolean {
+    color: #f09479;
+}
+
+code .constant {
+    color: #de935f;
 }
 
 code .operator {
-    color: hsl(3.8, 100%, 72.4%);
+    color: #e2637f;
 }
 
 code .keyword {
-    color: hsl(3.8, 100%, 72.4%);
+    color: #d183e8;
+}
+
+code .keyword.storage {
+    color: #f09479;
 }
 
 code .identifier {
-    color: hsl(208.2, 100%, 73.7%);
+    color: #79dac8;
 }
 
-code .function > .identifier {
-    color: hsl(269, 100%, 82.9%);
+code .function {
+    color: #74b2ff;
+}
+
+code .type {
+    color: #36c692;
 }

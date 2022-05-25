@@ -20,27 +20,27 @@ that type is know and type variables and constraints are assigned at the same ti
 typechecker has been greatly inspired by [Purescript][ps], which has exactly the features I wanted to have in Shade.
 
 Here is a simple example:
-```
+```constraints
 a + b
 ```
 Here we have two values: a and b, which are added together. First these three items are assigned type variables:
-```
+```constraints
 a: ?0
 b: ?1
 (a + b): ?2
 ```
 Based on the addition two constraints can be placed on these type variables:
-```
+```constraints
 ?0 == ?1
 ?2 == ?0
 ```
 After solving these constraints we get the following set of substitutions:
-```
+```constraints
 ?1 -> ?0
 ?2 -> ?0
 ```
 Finally, these substitution can be applied to get the final types for all the items:
-```
+```constraints
 a: ?0
 b: ?0
 (a + b): ?0

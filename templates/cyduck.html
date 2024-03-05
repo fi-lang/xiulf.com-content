@@ -1,0 +1,59 @@
+{{ define "cyduck" }}
+{{ template "header" .Meta }}
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+<main class="grow prose prose-neutral dark:prose-invert">
+    <h1>Cyduck Discography</h1>
+    <table class="table-auto">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Album</th>
+                <th class="min-w-fit text-nowrap">Release Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ template "cyduck-tracks" .Tracks }}
+        </tbody>
+    </table>
+</main>
+{{ template "footer" .Meta }}
+{{ end }}
+
+{{ define "cyduck-tracks" }}
+    {{ $next := .Next }}
+    {{ range .Items }}
+        {{ template "cyduck-track" .Track }}
+    {{ end }}
+    {{ if eq (len .Items) 20 }}
+        <tr id="load-row">
+            <td colspan="3">
+                <div class="flex justify-center">
+                    <button
+                        class="px-2 py-1 rounded bg-indigo-600"
+                        hx-post="/cyduck?next={{ urlquery $next }}"
+                        hx-swap="outerHTML"
+                        hx-target="#load-row"
+                    >Load More</button>
+                </div>
+            </td>
+        </tr>
+    {{ end }}
+{{ end }}
+
+{{ define "cyduck-track" }}
+<tr>
+    <td class="flex max-w-80">
+        <img class="m-0 mr-2 h-10 aspect-square rounded-lg" src="{{ with index .Album.Images 0 }}{{ .Url }}{{ end }}" />
+        <div class="flex flex-col max-w-72 justify-center">
+            <a class="text-nowrap text-ellipsis overflow-hidden" href="{{ .Urls.Spotify }}">{{ .Name }}</a>
+            <div class="text-xs opacity-50 text-nowrap text-ellipsis overflow-hidden">
+                {{ range $i, $artist := .Artists }}
+                    {{if ne $i 0}}• {{end}}<span>{{ $artist.Name }}</span>
+                {{ end }}
+            </div>
+        </div>
+    </td>
+    <td class="max-w-40 align-middle text-ellipsis text-nowrap overflow-hidden">{{ .Album.Name }}</td>
+    <td class="align-middle text-nowrap">{{ .Album.ReleaseDate }}</td>
+</tr>
+{{ end }}

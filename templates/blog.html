@@ -1,0 +1,18 @@
+{{ define "blog" }}
+{{ template "header" .Meta }}
+<main class="grow prose prose-neutral dark:prose-invert hover:prose-a:text-indigo-500">
+    <h1>Blog</h1>
+
+    <section class="mt-16">
+        {{ range $page := PagesIn .Pages "/blog" | SortByKey "Created" | Reverse }}
+            <div class="py-1">
+                <span class="pr-10 font-mono text-neutral-500">{{ $page.Meta.Created }}</span>
+                <a href="{{ $page.Name }}">
+                    {{ $page.Meta.Title }}
+                </a>
+            </div>
+        {{ end }}
+    </section>
+</main>
+{{ template "footer" .Meta }}
+{{ end }}

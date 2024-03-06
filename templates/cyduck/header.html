@@ -1,0 +1,19 @@
+{{ define "cyduck/header" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Title }}</title>
+    <link rel="shortcut icon" type="image/svg+xml" href="/static/img/favicon.svg">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="/static/js/tailwind.js"></script>
+</head>
+<body class="max-w-prose mx-auto min-h-screen px-3 flex flex-col justify-between dark:bg-neutral-950">
+    <header class="py-3 mb-10">
+        <nav id="navigation" class="flex items-center text-black text-sm dark:text-neutral-400">
+            <a class="flex hover:text-indigo-500" href="/">@Cyduck</a>
+        </nav>
+    </header>
+{{ end }}

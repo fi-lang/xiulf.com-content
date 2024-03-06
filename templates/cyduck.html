@@ -1,8 +1,10 @@
 {{ define "cyduck" }}
-{{ template "header" .Meta }}
+{{ template "cyduck/header" .Meta }}
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 <main class="grow prose prose-neutral dark:prose-invert">
-    <h1>Cyduck Discography</h1>
+    <h1>Cyduck</h1>
+    <p>Cyduck is a friendly music label and community dedicated to helping smaller artists develop &amp; grow.</p>
+    <h2>Latest releases</h2>
     <table class="table-auto">
         <thead>
             <tr>
@@ -16,7 +18,7 @@
         </tbody>
     </table>
 </main>
-{{ template "footer" .Meta }}
+{{ template "cyduck/footer" .Meta }}
 {{ end }}
 
 {{ define "cyduck-tracks" }}

@@ -1,7 +1,11 @@
-{{ define "index" }}
+{{ define "art" }}
 {{ template "header" .Meta }}
 <main class="grow prose prose-neutral dark:prose-invert hover:prose-a:text-indigo-500">
-    {{ .Content }}
+    <h1>Art</h1>
+
+    <section class="mt-16">
+        {{ .Content }}
+    </section>
 </main>
 {{ template "footer" .Meta }}
 {{ end }}

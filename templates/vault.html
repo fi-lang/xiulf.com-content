@@ -1,0 +1,40 @@
+{{ define "vault" }}
+{{ template "header" .Meta }}
+<main class="grow prose prose-neutral dark:prose-invert hover:prose-a:text-indigo-500">
+    <h1>Vault</h1>
+
+    <section class="mt-16">
+        <h2>Inbox</h2>
+        {{ range $page := PagesIn .Pages "/gideon-ofnir/Inbox" | SortByKey "Date" | Reverse }}
+            <div class="py-1">
+                <a href="{{ $page.Name }}">{{ $page.Meta.Title }}</a>
+            </div>
+        {{ end }}
+        <h2>Projects</h2>
+        {{ range $page := PagesIn .Pages "/gideon-ofnir/Projects" | SortByKey "Title" }}
+            <div class="py-1">
+                <a href="{{ $page.Name }}">{{ $page.Meta.Title }}</a>
+            </div>
+        {{ end }}
+        <h2>Areas</h2>
+        {{ range $page := PagesIn .Pages "/gideon-ofnir/Areas" | SortByKey "Title" }}
+            <div class="py-1">
+                <a href="{{ $page.Name }}">{{ $page.Meta.Title }}</a>
+            </div>
+        {{ end }}
+        <h2>Resources</h2>
+        {{ range $page := PagesIn .Pages "/gideon-ofnir/Resources" | SortByKey "Title" }}
+            <div class="py-1">
+                <a href="{{ $page.Name }}">{{ $page.Meta.Title }}</a>
+            </div>
+        {{ end }}
+        <h2>Archive</h2>
+        {{ range $page := PagesIn .Pages "/gideon-ofnir/Archive" | SortByKey "Title" }}
+            <div class="py-1">
+                <a href="{{ $page.Name }}">{{ $page.Meta.Title }}</a>
+            </div>
+        {{ end }}
+    </section>
+</main>
+{{ template "footer" .Meta }}
+{{ end }}
